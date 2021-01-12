@@ -4,7 +4,7 @@ Realizar um refactory que melhore as técnicas de programação e arquitetura ut
 
 ## O que deve ser entregue
 
-O aplicativo funcionando exatamente como está na versão original. 
+O aplicativo funcionando exatamente como está na versão original. O comportamento e o visual não devem ser alterados. O layout técnicamente pode ser alterado para seguir boas práticas e visando performance.
 
 ## O que gostaríamos que fosse utilizado
 
