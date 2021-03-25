@@ -17,7 +17,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import com.tribo_mkt.evaluation.respostas.UsuarioResposta
+import com.tribo_mkt.evaluation.model.UsuarioResposta
 import java.util.*
 
 class InicioActivity : AppCompatActivity() {
