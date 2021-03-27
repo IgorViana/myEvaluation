@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/inicioFragment">
 
     <fragment
         android:id="@+id/inicioFragment"
         android:name="com.tribo_mkt.evaluation.ui.InicioFragment.InicioFragment"
-        android:label="InicioFragment" />
+        android:label="Usuários">
+        <action
+            android:id="@+id/action_inicioFragment_to_albunsFragment"
+            app:destination="@id/albunsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/albunsFragment"
+        android:name="com.tribo_mkt.evaluation.ui.AlbunsFragment.AlbunsFragment"
+        android:label="Albuns">
+        <argument
+            android:name="usuario"
+            app:argType="com.tribo_mkt.evaluation.model.UsuarioResposta" />
+        <action
+            android:id="@+id/action_albunsFragment_to_fotosFragment"
+            app:destination="@id/fotosFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/fotosFragment"
+        android:name="com.tribo_mkt.evaluation.ui.FotosFragment.FotosFragment"
+        android:label="FotosFragment" >
+        <argument
+            android:name="album"
+            app:argType="com.tribo_mkt.evaluation.model.AlbumResposta" />
+        <argument
+            android:name="usuarioNome"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -60,12 +60,15 @@ class UsuarioDiffCallback : DiffUtil.ItemCallback<UsuarioResposta>() {
     }
 }
 
-class UsuarioClickListener(val click: (usuarioResposta: UsuarioResposta) -> Unit) {
+class UsuarioClickListener(
+    val albunsClick: (usuarioResposta: UsuarioResposta) -> Unit,
+    val postagemClick: (usuarioResposta: UsuarioResposta) -> Unit
+) {
     fun onAlbunsClick(usuarioResposta: UsuarioResposta) {
-        click(usuarioResposta)
+        albunsClick(usuarioResposta)
     }
 
     fun onPostagemClick(usuarioResposta: UsuarioResposta) {
-        click(usuarioResposta)
+        postagemClick(usuarioResposta)
     }
 }

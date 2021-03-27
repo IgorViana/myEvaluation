@@ -1,9 +1,12 @@
-package com.tribo_mkt.evaluation.respostas
+package com.tribo_mkt.evaluation.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-class AlbumResposta(
+@Parcelize
+data class AlbumResposta(
     @SerializedName("userId") val usuarioId: String,
     @SerializedName("id") val id: String,
     @SerializedName("title") val titulo: String
-)
+):Parcelable
