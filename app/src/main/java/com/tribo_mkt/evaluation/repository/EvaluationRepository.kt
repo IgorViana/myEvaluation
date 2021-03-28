@@ -9,7 +9,7 @@ import com.tribo_mkt.evaluation.model.PostagemResposta
 
 class EvaluationRepository(
     private val evaluationService: EvaluationService
-) : UsuarioRepositoryInterface {
+) : EvaluationRepositoryInterface {
 
     override suspend fun obterUsuariosOrdemAlfabetica(): List<UsuarioResposta> {
         return evaluationService.obterUsuarios()

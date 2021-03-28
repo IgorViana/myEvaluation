@@ -6,7 +6,7 @@ import com.tribo_mkt.evaluation.model.FotoResposta
 import com.tribo_mkt.evaluation.model.ComentarioResposta
 import com.tribo_mkt.evaluation.model.PostagemResposta
 
-interface UsuarioRepositoryInterface {
+interface EvaluationRepositoryInterface {
     suspend fun obterUsuariosOrdemAlfabetica(): List<UsuarioResposta>
 
     suspend fun obterAlbumUsuario(usuarioId: String): List<AlbumResposta>
