@@ -2,9 +2,9 @@ package com.tribo_mkt.evaluation.network.services
 
 import com.tribo_mkt.evaluation.model.AlbumResposta
 import com.tribo_mkt.evaluation.model.UsuarioResposta
-import com.tribo_mkt.evaluation.respostas.ComentarioResposta
+import com.tribo_mkt.evaluation.model.ComentarioResposta
 import com.tribo_mkt.evaluation.model.FotoResposta
-import com.tribo_mkt.evaluation.respostas.PostagemResposta
+import com.tribo_mkt.evaluation.model.PostagemResposta
 import retrofit2.http.GET
 import retrofit2.http.Query
 

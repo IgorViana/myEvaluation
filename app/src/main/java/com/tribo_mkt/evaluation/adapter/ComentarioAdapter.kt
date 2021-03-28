@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tribo_mkt.evaluation.databinding.CommentViewBinding
-import com.tribo_mkt.evaluation.respostas.ComentarioResposta
+import com.tribo_mkt.evaluation.model.ComentarioResposta
 
 class ComentarioAdapter() :
     ListAdapter<ComentarioResposta, ComentarioAdapter.ComentarioViewHolder>(ComentarioDiffCallback()) {

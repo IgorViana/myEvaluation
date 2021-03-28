@@ -20,11 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tribo_mkt.evaluation.AlbunsActivity"/>
-        <activity android:name="com.tribo_mkt.evaluation.FotosActivity"/>
-        <activity android:name="com.tribo_mkt.evaluation.FotoDetalheActivity"/>
-        <activity android:name="com.tribo_mkt.evaluation.PostagensActivity"/>
-        <activity android:name="com.tribo_mkt.evaluation.ComentariosActivity"/>
     </application>
 
 </manifest>

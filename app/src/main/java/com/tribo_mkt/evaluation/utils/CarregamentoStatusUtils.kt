@@ -18,6 +18,7 @@ class CarregamentoStatusUtils(
                 progressBar.visibility = View.GONE
             }
             NetworkState.ERROR -> {
+                progressBar.visibility = View.GONE
                 Toast.makeText(
                     progressBar.context,
                     "Algo errado aconteceu. Tente novamente mais tarde.",

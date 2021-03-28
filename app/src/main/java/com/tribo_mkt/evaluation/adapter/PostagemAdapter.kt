@@ -1,6 +1,5 @@
 package com.tribo_mkt.evaluation.adapter
 
-import android.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tribo_mkt.evaluation.databinding.PostViewBinding
-import com.tribo_mkt.evaluation.respostas.PostagemResposta
+import com.tribo_mkt.evaluation.model.PostagemResposta
 
 
 class PostagemAdapter(private val clickListener: PostagemClickListener) :

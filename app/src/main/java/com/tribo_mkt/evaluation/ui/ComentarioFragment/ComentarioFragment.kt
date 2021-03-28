@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tribo_mkt.evaluation.adapter.ComentarioAdapter
 import com.tribo_mkt.evaluation.databinding.ComentarioFragmentBinding
-import com.tribo_mkt.evaluation.respostas.PostagemResposta
+import com.tribo_mkt.evaluation.model.PostagemResposta
 import com.tribo_mkt.evaluation.utils.CarregamentoStatusUtils
 import org.koin.android.viewmodel.ext.android.viewModel
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tribo_mkt.evaluation.repository.EvaluationRepository
-import com.tribo_mkt.evaluation.respostas.PostagemResposta
+import com.tribo_mkt.evaluation.model.PostagemResposta
 import com.tribo_mkt.evaluation.utils.NetworkState
 import kotlinx.coroutines.launch
 

@@ -85,7 +85,7 @@
         android:name="com.tribo_mkt.evaluation.ui.ComentarioFragment.ComentarioFragment">
         <argument
             android:name="postagem"
-            app:argType="com.tribo_mkt.evaluation.respostas.PostagemResposta" />
+            app:argType="com.tribo_mkt.evaluation.model.PostagemResposta" />
         <argument
             android:name="usuarioNome"
             app:argType="string" />

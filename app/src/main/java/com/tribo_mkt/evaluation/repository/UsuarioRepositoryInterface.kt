@@ -3,8 +3,8 @@ package com.tribo_mkt.evaluation.repository
 import com.tribo_mkt.evaluation.model.AlbumResposta
 import com.tribo_mkt.evaluation.model.UsuarioResposta
 import com.tribo_mkt.evaluation.model.FotoResposta
-import com.tribo_mkt.evaluation.respostas.ComentarioResposta
-import com.tribo_mkt.evaluation.respostas.PostagemResposta
+import com.tribo_mkt.evaluation.model.ComentarioResposta
+import com.tribo_mkt.evaluation.model.PostagemResposta
 
 interface UsuarioRepositoryInterface {
     suspend fun obterUsuariosOrdemAlfabetica(): List<UsuarioResposta>
