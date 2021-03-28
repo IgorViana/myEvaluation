@@ -11,17 +11,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tribo_mkt.evaluation.adapter.PostagemAdapter
-import com.tribo_mkt.evaluation.adapter.PostagemClickListener
+import com.tribo_mkt.evaluation.adapter.PostagemItem
 import com.tribo_mkt.evaluation.databinding.PostagensFragmentBinding
 import com.tribo_mkt.evaluation.model.UsuarioResposta
 import com.tribo_mkt.evaluation.utils.CarregamentoStatusUtils
+import com.xwray.groupie.GroupieAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PostagensFragment : Fragment() {
 
     lateinit var binding: PostagensFragmentBinding
-    lateinit var postagemAdapter: PostagemAdapter
+    lateinit var postagemAdapter: GroupieAdapter
 
 
     private val postagensViewModel: PostagensViewModel by viewModel()
@@ -50,8 +50,7 @@ class PostagensFragment : Fragment() {
 
     private fun setUp() {
         usuarioResposta = args.usuario
-
-        configurarAdapter()
+        postagemAdapter = GroupieAdapter()
         configurarLista()
         observarChamadas()
 
@@ -59,8 +58,10 @@ class PostagensFragment : Fragment() {
 
     private fun observarChamadas() {
         postagensViewModel.getPostagemUsuario(usuarioResposta.id)
-        postagensViewModel.postagemResposta.observe(viewLifecycleOwner, Observer {
-            postagemAdapter.submitList(it)
+        postagensViewModel.postagemResposta.observe(viewLifecycleOwner, Observer { postagens ->
+            postagemAdapter.addAll(postagens.map { postagem ->
+                PostagemItem(postagem, configurarClickListener())
+            })
         })
 
         postagensViewModel.postagemRespostaStatus.observe(viewLifecycleOwner, Observer {
@@ -68,21 +69,21 @@ class PostagensFragment : Fragment() {
         })
     }
 
-    private fun configurarLista() {
-        binding.lista.apply {
-            this.layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = postagemAdapter
-        }
-    }
-
-    private fun configurarAdapter() {
-        postagemAdapter = PostagemAdapter(PostagemClickListener {
+    private fun configurarClickListener(): PostagemItem.PostagemClickListener {
+        return PostagemItem.PostagemClickListener {
             val action = PostagensFragmentDirections.actionPostagensFragmentToComentarioFragment(
                 it,
                 usuarioResposta.usuarioNome
             )
             navController.navigate(action)
-        })
+        }
+    }
+
+    private fun configurarLista() {
+        binding.lista.apply {
+            this.layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = postagemAdapter
+        }
     }
 
 }

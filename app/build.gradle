@@ -54,7 +54,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     def nav_version = "2.3.4"
-    def lifecycle_version = "2.3.0"
+    def lifecycle_version = "2.3.1"
     def retrofit = "2.9.0"
 
     // Coroutines
@@ -87,5 +87,8 @@ dependencies {
     // include koin-android-scope & koin-android
     implementation "org.koin:koin-android:2.1.5"
     implementation "org.koin:koin-android-viewmodel:2.1.5"
+
+    implementation "com.xwray:groupie:2.9.0"
+    implementation "com.xwray:groupie-viewbinding:2.9.0"
 
 }

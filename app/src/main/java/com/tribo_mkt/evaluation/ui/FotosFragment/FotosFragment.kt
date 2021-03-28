@@ -11,17 +11,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tribo_mkt.evaluation.adapter.FotosAdapter
-import com.tribo_mkt.evaluation.adapter.FotosClickListener
+import com.tribo_mkt.evaluation.adapter.FotosItem
 import com.tribo_mkt.evaluation.databinding.FotosFragmentBinding
 import com.tribo_mkt.evaluation.model.AlbumResposta
 import com.tribo_mkt.evaluation.utils.CarregamentoStatusUtils
+import com.xwray.groupie.GroupieAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FotosFragment : Fragment() {
 
     lateinit var binding: FotosFragmentBinding
-    lateinit var fotosAdapter: FotosAdapter
+    private lateinit var fotosAdapter: GroupieAdapter
 
 
     private val fotosViewModel: FotosViewModel by viewModel()
@@ -51,15 +51,17 @@ class FotosFragment : Fragment() {
     private fun setUp() {
         album = args.album
         nomeUsuario = args.usuarioNome
-        configurandoFotosAdapter()
+        fotosAdapter = GroupieAdapter()
         configurandoFotosLista()
         observandoChamadas()
     }
 
     private fun observandoChamadas() {
         fotosViewModel.getfotosUsuario(albumId = album.id)
-        fotosViewModel.fotosResposta.observe(viewLifecycleOwner, Observer {
-            fotosAdapter.submitList(it)
+        fotosViewModel.fotosResposta.observe(viewLifecycleOwner, Observer { fotos ->
+            fotosAdapter.addAll(fotos.map { foto ->
+                FotosItem(foto, configurarClickListener())
+            })
         })
 
         fotosViewModel.fotosRespostaStatus.observe(viewLifecycleOwner, Observer {
@@ -67,17 +69,17 @@ class FotosFragment : Fragment() {
         })
     }
 
+    private fun configurarClickListener(): FotosItem.FotosClickListener {
+        return FotosItem.FotosClickListener {
+            val action = FotosFragmentDirections.actionFotosFragmentToFotoDetalheFragment(it)
+            navController.navigate(action)
+        }
+    }
+
     private fun configurandoFotosLista() {
         binding.lista.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = fotosAdapter
         }
-    }
-
-    private fun configurandoFotosAdapter() {
-        fotosAdapter = FotosAdapter(FotosClickListener {
-            val action = FotosFragmentDirections.actionFotosFragmentToFotoDetalheFragment(it)
-            navController.navigate(action)
-        })
     }
 }

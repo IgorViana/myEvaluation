@@ -9,16 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tribo_mkt.evaluation.adapter.UsuarioAdapter
-import com.tribo_mkt.evaluation.adapter.UsuarioClickListener
+import com.tribo_mkt.evaluation.adapter.UsuarioItem
 import com.tribo_mkt.evaluation.databinding.InicioFragmentBinding
 import com.tribo_mkt.evaluation.utils.CarregamentoStatusUtils
-import com.tribo_mkt.evaluation.utils.NetworkState
+import com.xwray.groupie.GroupieAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class InicioFragment : Fragment() {
     lateinit var binding: InicioFragmentBinding
-    lateinit var usuarioAdapter: UsuarioAdapter
+    lateinit var inicioAdapter: GroupieAdapter
 
     private val inicioViewModel: InicioViewModel by viewModel()
 
@@ -36,8 +35,9 @@ class InicioFragment : Fragment() {
     }
 
     private fun setUp() {
-        configurarAdapter()
+        inicioAdapter = GroupieAdapter()
         configurarListeners()
+        configurarRecyclerView()
     }
 
     private fun configurarListeners() {
@@ -54,32 +54,30 @@ class InicioFragment : Fragment() {
     private fun buscarUsuarios() {
         inicioViewModel.getUsuariosOrdemAlfabetica()
         inicioViewModel.usuarioResposta.observe(viewLifecycleOwner, Observer { usuarios ->
-            usuarioAdapter.submitList(usuarios)
+            inicioAdapter.addAll(usuarios.map { usuario ->
+                UsuarioItem(usuario, configurarClickListener())
+            })
         })
     }
 
-    private fun configurarAdapter() {
-        usuarioAdapter = UsuarioAdapter(
-            UsuarioClickListener(
-                albunsClick = {
-                    val action = InicioFragmentDirections.actionInicioFragmentToAlbunsFragment(it)
-                    navController.navigate(action)
-                },
-                postagemClick = {
-                    val action =
-                        InicioFragmentDirections.actionInicioFragmentToPostagensFragment(it)
-                    navController.navigate(action)
-                })
-        )
-        configurarRecyclerView()
+    private fun configurarClickListener(): UsuarioItem.UsuarioClickListener {
+        return UsuarioItem.UsuarioClickListener(
+            albunsClick = {
+                val action = InicioFragmentDirections.actionInicioFragmentToAlbunsFragment(it)
+                navController.navigate(action)
+            },
+            postagemClick = {
+                val action =
+                    InicioFragmentDirections.actionInicioFragmentToPostagensFragment(it)
+                navController.navigate(action)
+            })
     }
 
     private fun configurarRecyclerView() {
         binding.lista.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = usuarioAdapter
+            this.adapter = inicioAdapter
         }
-
     }
 
 }

@@ -11,18 +11,18 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tribo_mkt.evaluation.adapter.AlbumAdapter
-import com.tribo_mkt.evaluation.adapter.AlbumClickListener
+import com.tribo_mkt.evaluation.adapter.AlbumItem
 import com.tribo_mkt.evaluation.databinding.AlbunsFragmentBinding
 import com.tribo_mkt.evaluation.model.UsuarioResposta
 import com.tribo_mkt.evaluation.utils.CarregamentoStatusUtils
+import com.xwray.groupie.GroupieAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class AlbunsFragment : Fragment() {
 
     lateinit var binding: AlbunsFragmentBinding
-    lateinit var albumAdapter: AlbumAdapter
+    lateinit var albumAdapter: GroupieAdapter
 
     private val albunsViewModel: AlbunsViewModel by viewModel()
 
@@ -51,7 +51,8 @@ class AlbunsFragment : Fragment() {
 
     private fun setUp() {
         usuario = args.usuario
-        configurarAdapter()
+
+        albumAdapter = GroupieAdapter()
         configurarLista()
         observarChamadas()
     }
@@ -59,7 +60,9 @@ class AlbunsFragment : Fragment() {
     private fun observarChamadas() {
         albunsViewModel.getAlbumUsuario(usuarioId = usuario.id)
         albunsViewModel.albumResposta.observe(viewLifecycleOwner, Observer {
-            albumAdapter.submitList(it)
+            albumAdapter.addAll(it.map { albuns ->
+                AlbumItem(albuns, configurarClickListener())
+            })
         })
 
         albunsViewModel.albumRespostaStatus.observe(viewLifecycleOwner, Observer {
@@ -74,15 +77,15 @@ class AlbunsFragment : Fragment() {
         }
     }
 
-    private fun configurarAdapter() {
-        albumAdapter = AlbumAdapter(AlbumClickListener {
+    private fun configurarClickListener(): AlbumItem.AlbumClickListener {
+        return AlbumItem.AlbumClickListener {
             val action =
                 AlbunsFragmentDirections.actionAlbunsFragmentToFotosFragment(
                     it,
                     usuario.usuarioNome
                 )
             navController.navigate(action)
-        })
+        }
     }
 
 }
