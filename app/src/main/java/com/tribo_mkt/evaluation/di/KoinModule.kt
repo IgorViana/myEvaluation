@@ -19,7 +19,7 @@ val appModule = module {
     factory<EvaluationRepository> { EvaluationRepository(get()) }
 
     viewModel { InicioViewModel(get()) }
-    viewModel { AlbunsViewModel(get()) }
+    viewModel { AlbunsViewModel(EvaluationRepository(get())) }
     viewModel { FotosViewModel(get()) }
     viewModel { PostagensViewModel(get()) }
     viewModel { ComentarioViewModel(get()) }
