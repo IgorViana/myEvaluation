@@ -77,10 +77,8 @@ class InicioFragment : Fragment() {
                     navController.navigate(action)
                 },
                 postagemClick = {
-                    val intent = Intent(activity, PostagensActivity::class.java)
-                    intent.putExtra("usuarioId", it.id)
-                    intent.putExtra("usuarioNome", it.usuarioNome)
-                    requireActivity().startActivity(intent)
+                    val action = InicioFragmentDirections.actionInicioFragmentToPostagensFragment(it)
+                    navController.navigate(action)
                 })
         )
         configurarRecyclerView()

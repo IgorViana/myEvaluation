@@ -4,6 +4,8 @@ import com.tribo_mkt.evaluation.model.AlbumResposta
 import com.tribo_mkt.evaluation.model.UsuarioResposta
 import com.tribo_mkt.evaluation.network.services.EvaluationService
 import com.tribo_mkt.evaluation.model.FotoResposta
+import com.tribo_mkt.evaluation.respostas.ComentarioResposta
+import com.tribo_mkt.evaluation.respostas.PostagemResposta
 
 class EvaluationRepository(
     private val evaluationService: EvaluationService
@@ -20,5 +22,17 @@ class EvaluationRepository(
 
     override suspend fun obterFotosAlbum(albumId: String): List<FotoResposta> {
         return evaluationService.obterFotosAlbum(albumId)
+    }
+
+    override suspend fun obterPostagemUsuario(usuarioId: String): List<PostagemResposta> {
+        return evaluationService.obterPostagemUsuario(usuarioId)
+    }
+
+    override suspend fun obterComentarioUsuario(usuarioId: String): List<ComentarioResposta> {
+        return evaluationService.obterComentarioUsuario(usuarioId)
+    }
+
+    override suspend fun obterComentarioPostagem(postId: String): List<ComentarioResposta> {
+        return evaluationService.obterComentarioPostagem(postId)
     }
 }

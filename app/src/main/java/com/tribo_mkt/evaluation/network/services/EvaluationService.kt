@@ -19,9 +19,12 @@ interface EvaluationService {
     suspend fun obterFotosAlbum(@Query("albumId") albumId: String): List<FotoResposta>
 
     @GET("posts")
-    suspend fun obterPostUsuario(@Query("userId") usuarioId: String): List<PostagemResposta>
+    suspend fun obterPostagemUsuario(@Query("userId") usuarioId: String): List<PostagemResposta>
 
     @GET("comments")
     suspend fun obterComentarioUsuario(@Query("userId") usuarioId: String): List<ComentarioResposta>
+
+    @GET("comments")
+    suspend fun obterComentarioPostagem(@Query("postId") postId: String): List<ComentarioResposta>
 
 }

@@ -1,6 +1,5 @@
 package com.tribo_mkt.evaluation.ui.FotosFragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tribo_mkt.evaluation.FotoDetalheActivity
 import com.tribo_mkt.evaluation.adapter.FotosAdapter
 import com.tribo_mkt.evaluation.adapter.FotosClickListener
 import com.tribo_mkt.evaluation.databinding.FotosFragmentBinding
@@ -78,10 +76,8 @@ class FotosFragment : Fragment() {
 
     private fun configurandoFotosAdapter() {
         fotosAdapter = FotosAdapter(FotosClickListener {
-            val intent = Intent(activity, FotoDetalheActivity::class.java)
-            intent.putExtra("fotoUrl", it.url)
-            intent.putExtra("fotoNome", it.titulo)
-            requireActivity().startActivity(intent)
+            val action = FotosFragmentDirections.actionFotosFragmentToFotoDetalheFragment(it)
+            navController.navigate(action)
         })
     }
 }

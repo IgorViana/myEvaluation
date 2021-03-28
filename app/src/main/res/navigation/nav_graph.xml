@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/inicioFragment">
 
@@ -11,10 +12,17 @@
         <action
             android:id="@+id/action_inicioFragment_to_albunsFragment"
             app:destination="@id/albunsFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_inicioFragment_to_postagensFragment"
+            app:destination="@id/postagensFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/albunsFragment"
@@ -26,10 +34,10 @@
         <action
             android:id="@+id/action_albunsFragment_to_fotosFragment"
             app:destination="@id/fotosFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/fotosFragment"
@@ -38,6 +46,46 @@
         <argument
             android:name="album"
             app:argType="com.tribo_mkt.evaluation.model.AlbumResposta" />
+        <argument
+            android:name="usuarioNome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fotosFragment_to_fotoDetalheFragment"
+            app:destination="@id/fotoDetalheFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fotoDetalheFragment"
+        android:name="com.tribo_mkt.evaluation.ui.FotoDetalhe.FotoDetalheFragment"
+        android:label="Foto Detalhe"
+        tools:layout="@layout/foto_detalhe_fragment" >
+        <argument
+            android:name="foto"
+            app:argType="com.tribo_mkt.evaluation.model.FotoResposta" />
+    </fragment>
+    <fragment
+        android:id="@+id/postagensFragment"
+        android:name="com.tribo_mkt.evaluation.ui.PostagemFragment.PostagensFragment">
+        <argument
+            android:name="usuario"
+            app:argType="com.tribo_mkt.evaluation.model.UsuarioResposta" />
+        <action
+            android:id="@+id/action_postagensFragment_to_comentarioFragment"
+            app:destination="@id/comentarioFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/comentarioFragment"
+        android:name="com.tribo_mkt.evaluation.ui.ComentarioFragment.ComentarioFragment">
+        <argument
+            android:name="postagem"
+            app:argType="com.tribo_mkt.evaluation.respostas.PostagemResposta" />
         <argument
             android:name="usuarioNome"
             app:argType="string" />
